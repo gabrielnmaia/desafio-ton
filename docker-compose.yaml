@@ -1,0 +1,16 @@
+version: '3.5'
+
+services: 
+  ton-db: 
+    image: 'mongo'
+    ports:  
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=tondb
+
+  ton-db-test: 
+    image: 'mongo'
+    ports:  
+      - '27018:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=tondb-test

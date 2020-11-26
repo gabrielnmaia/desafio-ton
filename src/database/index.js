@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 class Database {
   constructor() {
-    this.mongoConnection = mongoose.connect('mongodb://localhost:27017/tondb', {
+    this.mongoConnection = mongoose.connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
       useFindAndModify: true,
       useUnifiedTopology: true,
