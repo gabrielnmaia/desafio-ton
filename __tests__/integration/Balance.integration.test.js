@@ -5,20 +5,31 @@ import Payable from '../../src/app/schemas/Payable';
 
 describe('Balance', () => {
   beforeAll(async () => {
+    await Payable.deleteMany({});
     await Payable.create({
-      value: 190,
+      value: 100,
       payment_date: new Date(),
       status: 'paid',
     });
     await Payable.create({
-      value: 150,
+      value: 50,
+      payment_date: new Date(),
+      status: 'waiting_funds',
+    });
+    await Payable.create({
+      value: 10,
+      payment_date: new Date(),
+      status: 'paid',
+    });
+    await Payable.create({
+      value: 40,
       payment_date: new Date(),
       status: 'waiting_funds',
     });
   });
 
   afterAll(async () => {
-    await Payable.remove({});
+    await Payable.deleteMany({});
     await mongoose.connection.close();
   });
 
@@ -27,8 +38,8 @@ describe('Balance', () => {
       const res = await request(app).get('/balance');
 
       expect(res.body).toMatchObject({
-        available: 190,
-        waiting_funds: 150,
+        available: 110,
+        waiting_funds: 90,
       });
     });
   });

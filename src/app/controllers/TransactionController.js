@@ -1,7 +1,7 @@
 import TransactionService from '../services/TransactionService';
 
 class TransactionController {
-  async index(req, res) {
+  async index(_req, res) {
     const transactions = await TransactionService.list();
 
     return res.json(transactions);
