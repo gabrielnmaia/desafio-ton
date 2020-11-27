@@ -30,7 +30,7 @@ PayableSchema.statics.groupByStatus = async function (status) {
     },
   ]);
 
-  return result[0].total;
+  return result[0] ? result[0].total : 0;
 };
 
 export default mongoose.model('Payable', PayableSchema);

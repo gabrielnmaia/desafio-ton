@@ -1,6 +1,7 @@
 import Payable from '../schemas/Payable';
 import Transaction from '../schemas/Transaction';
 import PayableStatus from '../enums/PayableStatus';
+import PayableFee from '../enums/PayableFee';
 import TransactionMethod from '../enums/TransactionMethod';
 
 class TransactionService {
@@ -36,7 +37,10 @@ class TransactionService {
     });
 
     await Payable.create({
-      value: method === TransactionMethod.CREDIT ? value * 0.95 : value * 0.97,
+      value:
+        method === TransactionMethod.CREDIT
+          ? value * PayableFee.CREDIT
+          : value * PayableFee.DEBIT,
       payment_date:
         method === TransactionMethod.CREDIT
           ? date.setDate(date.getDate() + 30)
