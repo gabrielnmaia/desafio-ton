@@ -9,6 +9,7 @@
     "test": "dotenv -e .env.test jest"
   },
   "dependencies": {
+    "date-fns": "^2.16.1",
     "express": "^4.17.1",
     "mongoose": "^5.10.15"
   },

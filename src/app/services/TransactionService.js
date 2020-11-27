@@ -1,7 +1,8 @@
+import { addDays } from 'date-fns';
 import Payable from '../schemas/Payable';
 import Transaction from '../schemas/Transaction';
 import PayableStatus from '../enums/PayableStatus';
-import PayableFee from '../enums/PayableFee';
+import PayableFee from '../constants/PayableFee';
 import TransactionMethod from '../enums/TransactionMethod';
 
 class TransactionService {
@@ -42,9 +43,7 @@ class TransactionService {
           ? value * PayableFee.CREDIT
           : value * PayableFee.DEBIT,
       payment_date:
-        method === TransactionMethod.CREDIT
-          ? date.setDate(date.getDate() + 30)
-          : date,
+        method === TransactionMethod.CREDIT ? addDays(date, 30) : date,
       status:
         method === TransactionMethod.CREDIT
           ? PayableStatus.WAITING_FUNDS
