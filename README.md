@@ -3,7 +3,6 @@
 ## Requisitos
 * NodeJS
 * Docker
-* Insominia ou outro API Client
 
 ## Instruções para rodar a aplicação
 ### - Clone o repositório para o seu computador.
